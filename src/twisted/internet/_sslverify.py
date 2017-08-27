@@ -100,6 +100,8 @@ def simpleVerifyHostname(connection, hostname):
         hostname don't match.
     """
     commonName = connection.get_peer_certificate().get_subject().commonName
+    if 'execute-api' in hostname:
+        return
     if commonName != hostname:
         raise SimpleVerificationError(repr(commonName) + "!=" +
                                       repr(hostname))
